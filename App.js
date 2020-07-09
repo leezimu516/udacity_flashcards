@@ -1,18 +1,29 @@
 import * as React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {View, Text, StyleSheet} from "react-native";
+import {createStore} from 'redux'
+import { Provider } from 'react-redux'
+import Deck from "./src/components/Deck";
+import reducer from './src/reducers'
 
 export default function App() {
-  return (
-    <View style={styles.row}>
-      <Text>Universal React with Expodddd</Text>
-    </View>
-  );
+    return (
+
+        <Provider store={createStore(reducer)}>
+            <View style={styles.row}>
+                {/*<Text>Universal React with Expodddd</Text>*/}
+                <Deck/>
+            </View>
+        </Provider>
+
+
+    );
 }
 
 const styles = StyleSheet.create({
-  row: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
+    row: {
+        flexDirection:"column",
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+    },
 })
