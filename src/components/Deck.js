@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, Platform, TouchableOpacity, FlatList, Dimensions
 import {connect} from 'react-redux'
 import {fetchDeckResults} from '../utils/api'
 import {setDummyData} from '../utils/_data'
+
 import {receiveDecks} from "../actions/receiceDecks";
 import {deckReducer} from "../reducers/deckReducer";
 
@@ -32,12 +33,15 @@ class Deck extends Component {
         return (
 
             <TouchableOpacity
-                onPress={() => this.props.navigation.navigate(
-                    'EntryDetail',
-                    {entryId: key}
-                )}
+                onPress={() => console.log(name)
+                }
+
+                // onPress={() => this.props.navigation.navigate(
+                //     'EntryDetail',
+                //     {entryId: key}
+                // )}
             >
-                <View style={styles.entry} onTouch={}>
+                <View style={styles.entry}>
                     <Text style={styles.entry_deck}>{name}</Text>
                     <Text style={styles.entry_card}>Cards: {this.props.decks[name]['questions'].length}</Text>
                 </View>
