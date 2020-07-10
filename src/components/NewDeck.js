@@ -3,7 +3,9 @@ import {View, Text, StyleSheet, Platform, TouchableOpacity, FlatList, Dimensions
 
 
 class NewDeck extends Component {
+
     render() {
+
         return (
             <View>
                 <Text>New deck</Text>

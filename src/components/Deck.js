@@ -37,7 +37,7 @@ class Deck extends Component {
         return (
 
             <TouchableOpacity
-                onPress={() => navigation.push('NewDeck')}
+                onPress={() => navigation.push('DeckDetails', {entry: this.props.decks[name]})}
                 // onPress={() => {console.log("nav", navigation)}}
 
                 // onPress={() => this.props.navigation.navigate(
