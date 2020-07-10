@@ -3,6 +3,9 @@ import {View, Text, StyleSheet, Platform, TouchableOpacity, FlatList, Dimensions
 import {connect} from 'react-redux'
 import {fetchDeckResults} from '../utils/api'
 import {setDummyData} from '../utils/_data'
+import NewDeck from './NewDeck'
+import { useNavigation } from '@react-navigation/native';
+
 
 import {receiveDecks} from "../actions/receiceDecks";
 import {deckReducer} from "../reducers/deckReducer";
@@ -29,12 +32,13 @@ class Deck extends Component {
 
     renderItem = (item) => {
         const name = item.item
+        const { navigation } = this.props;
         console.log("deck item:dddd", this.props.decks[name]['questions'].length)
         return (
 
             <TouchableOpacity
-                onPress={() => console.log(name)
-                }
+                onPress={() => navigation.push('NewDeck')}
+                // onPress={() => {console.log("nav", navigation)}}
 
                 // onPress={() => this.props.navigation.navigate(
                 //     'EntryDetail',

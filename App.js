@@ -10,9 +10,9 @@ import {FontAwesome, Ionicons} from '@expo/vector-icons'
 import {Constants} from 'expo'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import 'react-native-gesture-handler';
-
+import DeckDetails from "./src/components/DeckDetails";
 
 
 const Tab = createBottomTabNavigator();
@@ -21,20 +21,22 @@ const Stack = createStackNavigator();
 const TabBar = () => {
     return (
 
-            <Tab.Navigator>
-                <Tab.Screen name="Deck" component={Deck}/>
-                <Tab.Screen name="New Deck" component={NewDeck}/>
-            </Tab.Navigator>
+        <Tab.Navigator>
+            <Tab.Screen name="Deck" component={Deck}/>
+            <Tab.Screen name="NewDeck" component={NewDeck}/>
+        </Tab.Navigator>
 
     )
 }
 
 const MyStack = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={TabBar} />
-    </Stack.Navigator>
-  );
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="Home" component={TabBar}/>
+            <Stack.Screen name="DeckDetails" component={DeckDetails}/>
+            <Stack.Screen name="NewDeck" component={NewDeck}/>
+        </Stack.Navigator>
+    );
 }
 
 export default function App() {
@@ -42,7 +44,7 @@ export default function App() {
 
         <Provider store={createStore(reducer)}>
             <NavigationContainer style={styles.row}>
-            <MyStack/>
+                <MyStack/>
                 {/*<TabBar/>*/}
                 {/*<Deck/>*/}
             </NavigationContainer>
