@@ -14,6 +14,7 @@ import SubmitBtn from "./SubmitBtn";
 import {formatDeck} from "../utils/helper";
 import {addDeck} from "../actions/deckAction";
 import {connect} from "react-redux";
+import {saveDeck} from "../utils/api";
 
 
 class NewDeck extends Component {
@@ -27,12 +28,13 @@ class NewDeck extends Component {
     submit = () => {
         const {deckTitle} = this.state
         const {dispatch,navigation} = this.props
-        // const deck = formatDeck(deckTitle)
+        const deck = formatDeck(deckTitle)
         // console.log('add card component', deck)
 
         dispatch(addDeck(deckTitle))
         navigation.push('DeckDetails', {entryId: deckTitle})
         this.setState({deckTitle:''})
+        saveDeck({deck, entryId:deckTitle})
 
     }
 

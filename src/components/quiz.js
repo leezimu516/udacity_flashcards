@@ -77,7 +77,8 @@ class Quiz extends Component {
 
                             <View>
                                 <Text style={styles.entry_question}>your score is {parseInt(correct/cards.length * 100, 10)}%</Text>
-                                <SubmitBtn text={'Home'} onPress={() => navigation.push('Home')}/>
+                                <SubmitBtn text={'Home'} onPress={() => navigation.navigate('Home')}/>
+                                <SubmitBtn text={'Restart Quiz'} onPress={() => navigation.navigate('DeckDetails', {entryId: entryId})}/>
                             </View>
                         }
                     </View>

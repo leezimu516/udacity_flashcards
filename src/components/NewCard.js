@@ -4,6 +4,7 @@ import SubmitBtn from "./SubmitBtn";
 import {connect} from 'react-redux'
 import {formatCard} from "../utils/helper";
 import {addCard} from "../actions/deckAction";
+import {saveCard} from "../utils/api";
 
 class NewCard extends Component {
     constructor () {
@@ -21,6 +22,7 @@ class NewCard extends Component {
         console.log('add card component', card, entryId)
         dispatch(addCard(card, entryId))
         navigation.push('DeckDetails', {entryId: entryId})
+        saveCard({card, entryId})
 
     }
     render() {
