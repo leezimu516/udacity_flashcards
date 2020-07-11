@@ -21,17 +21,21 @@ class Quiz extends Component {
         super()
         this.state = {
             deckTitle: '',
-            toggleAnswer: false
+            toggleAnswer: false,
         }
     }
 
-    next = (entryId, cardId) => {
-        const {dispatch, navigation} = this.props
-        navigation.push('Quiz', {entryId, cardId})
+    next = (entryId, cardId, isCorrect) => {
+        const {dispatch, navigation, route} = this.props
+        const {correct} = route.params
+        console.log('current corrent', correct)
+        const current = isCorrect ? correct+1:  correct
+        console.log("correct answer", current)
+        navigation.push('Quiz', {entryId, cardId, correct:current})
 
     }
 
-    handleToggleAnswer = () =>{
+    handleToggleAnswer = () => {
         const current = this.state.toggleAnswer
         this.setState({toggleAnswer: !current})
     }
@@ -39,44 +43,47 @@ class Quiz extends Component {
 
     render() {
         const {decks, route, navigation} = this.props
-        const {entryId, cardId} = route.params
+        const {entryId, cardId, correct} = route.params
         const deck = decks[entryId]
         const cards = deck['questions']
         const card = cards[cardId]
-        console.log("card component", cardId, cards)
+        // console.log("card component", cardId, cards)
         return (
             <View style={styles.container}>
-                {cardId !== cards.length ?
+                {cards.length !== 0 ?
                     <View>
-                        {cards.length !== 0 ?
+
+                        {cardId !== cards.length ?
                             <View>
+                                <Text style={styles.indicator}>{cardId+1}/{cards.length}</Text>
                                 {this.state.toggleAnswer ?
                                     <View>
                                         <Text style={styles.entry_question}>{card.answer}</Text>
-                                        < SubmitBtn text={'Question'} onPress={()=>this.handleToggleAnswer()}/>
+                                        < SubmitBtn text={'Question'} onPress={() => this.handleToggleAnswer()}/>
                                     </View>
                                     :
                                     <View>
                                         <Text style={styles.entry_question}>{card.question}</Text>
-                                        < SubmitBtn text={'Answer'} onPress={()=>this.handleToggleAnswer()}/>
+                                        < SubmitBtn text={'Answer'} onPress={() => this.handleToggleAnswer()}/>
                                     </View>
 
 
                                 }
 
-                                <SubmitBtn text={'Correct'} onPress={() => this.next(entryId, cardId + 1)}/>
-                                <SubmitBtn text={'Incorrect'}/>
+                                <SubmitBtn text={'Correct'} onPress={() => this.next(entryId, cardId + 1, true)}/>
+                                <SubmitBtn text={'Incorrect'} onPress={() => this.next(entryId, cardId + 1, false)}/>
                             </View>
                             :
-                            <View>
-                                <Text>Sorry, you cannnot take a quiz because there are no cards in the deck</Text>
-                            </View>
 
+                            <View>
+                                <Text style={styles.entry_question}>your score is {parseInt(correct/cards.length * 100, 10)}%</Text>
+                                <SubmitBtn text={'Home'} onPress={() => navigation.push('Home')}/>
+                            </View>
                         }
                     </View>
                     :
                     <View>
-                        <Text>this is last card</Text>
+                        <Text>Sorry, you cannnot take a quiz because there are no cards in the deck</Text>
                     </View>
                 }
 
@@ -92,7 +99,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         flex: 1,
         backgroundColor: 'white',
-        justifyContent: 'center',//
+        // justifyContent: 'center',//
         // alignItems: 'center',
         paddingHorizontal: 20,
         paddingTop: 20,
@@ -112,6 +119,10 @@ const styles = StyleSheet.create({
     },
     entry_answer: {
         fontSize: 15
+    },
+    indicator: {
+        fontSize:15,
+        marginBottom:50,
     }
 });
 

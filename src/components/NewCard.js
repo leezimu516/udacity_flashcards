@@ -16,10 +16,11 @@ class NewCard extends Component {
 
     submit = (entryId) => {
         const {question, answer} = this.state
-        const {dispatch} = this.props
+        const {dispatch, navigation} = this.props
         const card = formatCard(question, answer)
         console.log('add card component', card, entryId)
         dispatch(addCard(card, entryId))
+        navigation.push('DeckDetails', {entryId: entryId})
 
     }
     render() {
