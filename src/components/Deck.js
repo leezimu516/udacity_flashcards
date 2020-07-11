@@ -7,8 +7,7 @@ import NewDeck from './NewDeck'
 import { useNavigation } from '@react-navigation/native';
 
 
-import {receiveDecks} from "../actions/receiceDecks";
-import {deckReducer} from "../reducers/deckReducer";
+import {receiveDecks, receiveCards} from "../actions/deckAction";
 
 class Deck extends Component {
     constructor() {
@@ -30,6 +29,15 @@ class Deck extends Component {
             })
     }
 
+    onPressDeck = (deckName) => {
+        const { dispatch, navigation } = this.props;
+        // const deck = this.props.decks[deckName]
+        // console.log("deck card: ", deck)
+        // // console.log("deck card: ", deck, deck['title'], deck['questions'])
+        // dispatch(receiveCards(this.props.decks))
+        navigation.push('DeckDetails', {entryId: deckName})
+    }
+
     renderItem = (item) => {
         const name = item.item
         const { navigation } = this.props;
@@ -37,7 +45,8 @@ class Deck extends Component {
         return (
 
             <TouchableOpacity
-                onPress={() => navigation.push('DeckDetails', {entry: this.props.decks[name]})}
+                // onPress={() => navigation.push('DeckDetails', {entry: this.props.decks[name]})}
+                onPress={() => this.onPressDeck(name)}
                 // onPress={() => {console.log("nav", navigation)}}
 
                 // onPress={() => this.props.navigation.navigate(
