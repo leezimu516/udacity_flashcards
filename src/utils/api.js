@@ -1,4 +1,4 @@
-import {AsyncStorage} from 'react-native'
+import AsyncStorage from "@react-native-community/async-storage"
 import {fetchData, DECK_STORAGE_KEY} from './_data'
 
 export function fetchDeckResults() {

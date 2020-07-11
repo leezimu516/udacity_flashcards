@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, StyleSheet, Platform, TouchableOpacity, FlatList, Dimensions, AsyncStorage} from 'react-native'
+import {View, Text, StyleSheet, Platform, TouchableOpacity, FlatList, Dimensions} from 'react-native'
 import {connect} from 'react-redux'
 import {fetchDeckResults} from '../utils/api'
 import {setDummyData} from '../utils/_data'

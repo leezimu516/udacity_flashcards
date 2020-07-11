@@ -1,7 +1,7 @@
-import {AsyncStorage, Linking, Alert} from 'react-native'
-// import {Notifications} from 'expo'
+import {Linking, Alert} from 'react-native'
 import * as Notifications from 'expo-notifications';
 import * as Permissions from 'expo-permissions';
+import AsyncStorage from "@react-native-community/async-storage"
 
 export const NOTIFICATION_KEY = 'flashcard:notification'
 

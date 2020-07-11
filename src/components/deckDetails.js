@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, StyleSheet, Platform, TouchableOpacity, FlatList, Dimensions, AsyncStorage} from 'react-native'
+import {View, Text, StyleSheet, Platform, TouchableOpacity, FlatList, Dimensions} from 'react-native'
 import SubmitBtn from './SubmitBtn'
 import {connect} from "react-redux";
 import {clearLocalNotification, NOTIFICATION_KEY, setLocalNotification} from "../utils/helper";
