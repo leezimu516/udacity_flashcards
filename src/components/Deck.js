@@ -65,6 +65,7 @@ class Deck extends Component {
                     :
                     <FlatList
                         data={Object.keys(decks)}
+                        keyExtractor={(item, index) => item}
                         renderItem={this.renderItem}
 
                     />
