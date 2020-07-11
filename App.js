@@ -14,6 +14,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 import DeckDetails from "./src/components/DeckDetails";
 import NewCard from "./src/components/NewCard";
+import Quiz from "./src/components/Quiz";
 
 
 const Tab = createBottomTabNavigator();
@@ -22,7 +23,10 @@ const Stack = createStackNavigator();
 const TabBar = () => {
     return (
 
-        <Tab.Navigator>
+        <Tab.Navigator
+            initialRouteName="Deck"
+            headerMode="screen"
+        >
             <Tab.Screen name="Deck" component={Deck}/>
             <Tab.Screen name="NewDeck" component={NewDeck}/>
         </Tab.Navigator>
@@ -37,6 +41,7 @@ const MyStack = () => {
             <Stack.Screen name="DeckDetails" component={DeckDetails}/>
             <Stack.Screen name="NewDeck" component={NewDeck}/>
             <Stack.Screen name="NewCard" component={NewCard}/>
+            <Stack.Screen name="Quiz" component={Quiz}/>
         </Stack.Navigator>
     );
 }

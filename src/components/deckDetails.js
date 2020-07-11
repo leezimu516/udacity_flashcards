@@ -16,7 +16,7 @@ class DeckDetails extends Component {
                 <Text style={styles.entry_deck}>{entry['title']}</Text>
                 <Text style={styles.entry_card}>Cards: {entry['questions'].length}</Text>
                 <SubmitBtn text={'Add Card'} onPress={() => navigation.push('NewCard', {entryId: entry['title']})}/>
-                <SubmitBtn text={'Start Quiz'}/>
+                <SubmitBtn text={'Start Quiz'} onPress={() => navigation.push('Quiz', {entryId: entry['title'], cardId: 0})}/>
 
 
             </View>

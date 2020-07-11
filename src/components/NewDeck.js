@@ -26,11 +26,13 @@ class NewDeck extends Component {
 
     submit = () => {
         const {deckTitle} = this.state
-        const {dispatch} = this.props
+        const {dispatch,navigation} = this.props
         // const deck = formatDeck(deckTitle)
         // console.log('add card component', deck)
 
         dispatch(addDeck(deckTitle))
+        navigation.push('DeckDetails', {entryId: deckTitle})
+        this.setState({deckTitle:''})
 
     }
 
@@ -42,9 +44,11 @@ class NewDeck extends Component {
             <KeyboardAvoidingView style={styles.container} behavior='padding'>
                 <Text>What is the title of your new deck?</Text>
                 <TextInput
+                    clearButtonMode="always"
                     placeholder={'Deck title'}
                     style={styles.textInput}
                     onChangeText={(input) => {this.setState({deckTitle:input})}}
+                    value={this.state.deckTitle}
                 />
                 <SubmitBtn text='submit' onPress={() => this.submit()}/>
             </KeyboardAvoidingView>

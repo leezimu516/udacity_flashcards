@@ -10,8 +10,8 @@ function deckReducer(state = {}, action) {
             }
         case ADD_DECK :
 
-            console.log("ADD_DECK reducer action", action)
-            console.log("ADD_DECK reducer state ", state)
+            // console.log("ADD_DECK reducer action", action)
+            // console.log("ADD_DECK reducer state ", state)
 
             return {
                 ...state,
