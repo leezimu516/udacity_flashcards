@@ -9,14 +9,21 @@ function deckReducer(state = {}, action) {
                 ...action.entries,
             }
         case ADD_DECK :
+
+            console.log("ADD_DECK reducer action", action)
+            console.log("ADD_DECK reducer state ", state)
+
             return {
                 ...state,
-                ...action.entry
+                [action.entry]: {
+                    title:action.entry,
+                    questions:[]
+                }
             }
 
         case ADD_CARD :
-            console.log("add card reducer action", action.entryId)
-            console.log("add card reducer state ", state)
+            // console.log("add card reducer action", action.entryId)
+            // console.log("add card reducer state ", state)
 
             return {
                 ...state,
@@ -28,8 +35,8 @@ function deckReducer(state = {}, action) {
             }
 
         case RECEIVE_CARDS :
-            console.log("receive card reducer action", action.cards)
-            console.log("receive card reducer state ", state)
+            // console.log("receive card reducer action", action.cards)
+            // console.log("receive card reducer state ", state)
 
 
             return {

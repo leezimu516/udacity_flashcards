@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {View, Text, StyleSheet, Platform, TouchableOpacity, FlatList, Dimensions, KeyboardAvoidingView, TextInput} from 'react-native'
 import SubmitBtn from "./SubmitBtn";
 import {connect} from 'react-redux'
-import formatCard from "../utils/helper";
+import {formatCard} from "../utils/helper";
 import {addCard} from "../actions/deckAction";
 
 class NewCard extends Component {
