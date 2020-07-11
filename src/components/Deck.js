@@ -1,13 +1,14 @@
 import React, {Component} from 'react'
-import {View, Text, StyleSheet, Platform, TouchableOpacity, FlatList, Dimensions} from 'react-native'
+import {View, Text, StyleSheet, Platform, TouchableOpacity, FlatList, Dimensions, AsyncStorage} from 'react-native'
 import {connect} from 'react-redux'
 import {fetchDeckResults} from '../utils/api'
 import {setDummyData} from '../utils/_data'
 import NewDeck from './NewDeck'
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 
 import {receiveDecks, receiveCards} from "../actions/deckAction";
+import {NOTIFICATION_KEY, setLocalNotification} from "../utils/helper";
 
 class Deck extends Component {
     constructor() {
@@ -30,29 +31,18 @@ class Deck extends Component {
     }
 
     onPressDeck = (deckName) => {
-        const { dispatch, navigation } = this.props;
-        // const deck = this.props.decks[deckName]
-        // console.log("deck card: ", deck)
-        // // console.log("deck card: ", deck, deck['title'], deck['questions'])
-        // dispatch(receiveCards(this.props.decks))
+        const {dispatch, navigation} = this.props;
         navigation.push('DeckDetails', {entryId: deckName})
     }
 
     renderItem = (item) => {
         const name = item.item
-        const { navigation } = this.props;
+        const {navigation} = this.props;
         console.log("deck item:dddd", this.props.decks[name]['questions'].length)
         return (
 
             <TouchableOpacity
-                // onPress={() => navigation.push('DeckDetails', {entry: this.props.decks[name]})}
                 onPress={() => this.onPressDeck(name)}
-                // onPress={() => {console.log("nav", navigation)}}
-
-                // onPress={() => this.props.navigation.navigate(
-                //     'EntryDetail',
-                //     {entryId: key}
-                // )}
             >
                 <View style={styles.entry}>
                     <Text style={styles.entry_deck}>{name}</Text>
@@ -67,7 +57,6 @@ class Deck extends Component {
 
     render() {
         const {decks, loading} = this.props
-        // {console.log("decks:",decks)}
         return (
             <View>
                 <Text>Deck</Text>
@@ -89,14 +78,10 @@ class Deck extends Component {
 const styles = StyleSheet.create({
     row: {
         flexDirection: "column"
-        // flex: 1,
-        // justifyContent: "center",
-        // alignItems: "center",
 
     },
 
     entry: {
-        // height:100,
         flexDirection: "column",
         width: Dimensions.get('window').width,
         justifyContent: "center",

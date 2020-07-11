@@ -1,5 +1,5 @@
 import * as React from "react";
-import {View, Text, StyleSheet, Platform} from "react-native";
+import {View, Text, StyleSheet, Platform, AsyncStorage} from "react-native";
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import NewDeck from "./src/components/NewDeck";
@@ -7,7 +7,6 @@ import Deck from "./src/components/Deck"
 import reducer from './src/reducers'
 import {purple, white} from './src/utils/colors'
 import {FontAwesome, Ionicons} from '@expo/vector-icons'
-import {Constants} from 'expo'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -15,6 +14,8 @@ import 'react-native-gesture-handler';
 import DeckDetails from "./src/components/DeckDetails";
 import NewCard from "./src/components/NewCard";
 import Quiz from "./src/components/Quiz";
+import {setLocalNotification} from "./src/utils/helper";
+import {Component} from "react";
 
 
 const Tab = createBottomTabNavigator();
@@ -46,19 +47,26 @@ const MyStack = () => {
     );
 }
 
-export default function App() {
-    return (
+export default class App extends Component {
 
-        <Provider store={createStore(reducer)}>
-            <NavigationContainer style={styles.row}>
-                <MyStack/>
-                {/*<TabBar/>*/}
-                {/*<Deck/>*/}
-            </NavigationContainer>
-        </Provider>
+    componentDidMount() {
+        setLocalNotification()
+    }
+
+    render() {
+
+        return (
+
+            <Provider store={createStore(reducer)}>
+                <NavigationContainer style={styles.row}>
+                    <MyStack/>
+                </NavigationContainer>
+            </Provider>
 
 
-    );
+        );
+    }
+
 }
 
 const styles = StyleSheet.create({
